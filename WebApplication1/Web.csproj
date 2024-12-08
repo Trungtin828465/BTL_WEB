@@ -1537,7 +1537,8 @@
     <Content Include="Content\ResetPassWord\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Content\ResetPassWord\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Properties\PublishProfiles\tinnhonmy123-001-site1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\tinnhonmy123-001-site1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\trungtin0972-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\trungtin0972-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

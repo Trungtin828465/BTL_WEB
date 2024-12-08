@@ -114,20 +114,65 @@ namespace admin4.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra các trường bắt buộc
+                if (string.IsNullOrEmpty(model.FullName))
+                {
+                    ModelState.AddModelError("FullName", "Họ tên không được để trống.");
+                }
+
+                if (string.IsNullOrEmpty(model.Email))
+                {
+                    ModelState.AddModelError("Email", "Email không được để trống.");
+                }
+                //if (string.IsNullOrEmpty(model.CreatedAt))
+                //{
+                //    ModelState.AddModelError("CreatedAt", "CreatedAt không được để trống.");
+                //}
+                if (string.IsNullOrEmpty(model.Password))
+                {
+                    ModelState.AddModelError("Password", "Password không được để trống.");
+                }
+                if (string.IsNullOrEmpty(model.Address))
+                {
+                    ModelState.AddModelError("Address", "Address không được để trống.");
+                }
+                if (string.IsNullOrEmpty(model.Phone))
+                {
+                    ModelState.AddModelError("Phone", "Phone không được để trống.");
+                }
+                if (string.IsNullOrEmpty(model.Gender))
+                {
+                    ModelState.AddModelError("Gender", "Gender không được để trống.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model); // Nếu có lỗi, trả về view với thông tin đã nhập.
+                }
+
                 // Xử lý upload file ảnh
                 if (ImgCustomer != null && ImgCustomer.ContentLength > 0)
                 {
-                    // Lấy tên file
-                    var fileName = Path.GetFileName(ImgCustomer.FileName);
+                    // Lấy tên file và thêm một mã ngẫu nhiên để tránh trùng lặp tên file
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImgCustomer.FileName);
 
                     // Đường dẫn để lưu file trong thư mục
                     var path = Path.Combine(Server.MapPath("~/Content/assets/images/avatars/"), fileName);
 
-                    // Lưu file vào thư mục
-                    ImgCustomer.SaveAs(path);
+                    try
+                    {
+                        // Lưu file vào thư mục
+                        ImgCustomer.SaveAs(path);
 
-                    // Gán tên file vào thuộc tính ImgCustomer của model
-                    model.ImgCustomer = fileName;
+                        // Gán tên file vào thuộc tính ImgCustomer của model
+                        model.ImgCustomer = fileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log lỗi nếu có
+                        ModelState.AddModelError("", "Lỗi khi tải ảnh lên: " + ex.Message);
+                        return View(model);
+                    }
                 }
                 else
                 {
@@ -138,9 +183,18 @@ namespace admin4.Controllers
                 // Thiết lập các giá trị mặc định khác
                 model.check_Remove = 1;
 
-                // Lưu model vào cơ sở dữ liệu
-                db.Customer.Add(model);
-                db.SaveChanges();
+                try
+                {
+                    // Lưu model vào cơ sở dữ liệu
+                    db.Customer.Add(model);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi nếu có và trả lại thông báo lỗi
+                    ModelState.AddModelError("", "Lỗi khi lưu dữ liệu: " + ex.Message);
+                    return View(model);
+                }
 
                 // Chuyển hướng về trang danh sách
                 return RedirectToAction("Index");

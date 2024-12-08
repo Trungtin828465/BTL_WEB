@@ -278,11 +278,11 @@ namespace WebApplication1.Controllers
                         }
                         break;
                     case "GiaTangDan":
-                        if (!string.IsNullOrEmpty(imageName))
+                        if (!string.IsNullOrEmpty(tabChild))
                         {
                             queryLayout = queryLayout.OrderBy(p => p.Price);
                         }
-                        else if (!string.IsNullOrEmpty(tabChild))
+                        else if (!string.IsNullOrEmpty(imageName))
                         {
                             // Sắp xếp giá tăng dần
                             query = query.OrderBy(p => p.Price);

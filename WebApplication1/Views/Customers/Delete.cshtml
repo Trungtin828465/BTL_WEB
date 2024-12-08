@@ -11,7 +11,7 @@
     <div class="d-md-flex m-b-15 align-items-center justify-content-between">
         <div class="media align-items-center m-b-15">
             <div class="avatar avatar-image rounded" style="height: 70px; width: 70px;">
-                <img src="~/Content/img_customer/@Model.ImgCustomer"alt="Customer Image" />
+                <img src="~/Content/img_customer/@Model.ImgCustomer" alt="Customer Image" />
             </div>
             <div class="m-l-15">
                 <h4 class="m-b-0">Delete Customer</h4>
@@ -45,7 +45,7 @@
 </div>
 
 <!-- Delete Confirmation Form -->
-@using (Html.BeginForm("Delete", "Customers", new { id = Model.CustomerID }))
+@using (Html.BeginForm("Delete", "Customers", new { id = Model.CustomerID }, FormMethod.Post, new { onsubmit = "return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');" }))
 {
     @Html.AntiForgeryToken()
 
@@ -54,4 +54,3 @@
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary ml-2" })
     </div>
 }
-</div>

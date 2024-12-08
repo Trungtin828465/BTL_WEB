@@ -8,7 +8,7 @@
     list-style-type: none;
     padding: 0 0 0 0;
     align-items: center;
-    background-color: #8be5e8;
+    background-color: #65635e;
 }
 
     .nav-menu > li {
@@ -173,7 +173,7 @@ Search Bar and Icons
 @media (min-width: 768px) {
     .nav-menu {
         flex-wrap: wrap; /* Cho phép tự động xuống dòng nếu cần */
-        background-color: #8be5e8;
+        background-color: #65635e;
         justify-content: center;
     }
 
@@ -199,7 +199,7 @@ body {
     list-style-type: none;
     padding: 0 5% 0 5%;
     align-items: center;
-    background-color: #8be5e8;
+    background-color: #65635e;
 }
 
     .nav-menu > li {
@@ -364,7 +364,7 @@ Search Bar and Icons
 @media (min-width: 768px) {
     .nav-menu {
         flex-wrap: wrap; /* Cho phép tự động xuống dòng nếu cần */
-        background-color: #8be5e8;
+        background-color: #65635e;
         justify-content: center;
     }
 

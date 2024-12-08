@@ -55,7 +55,13 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-danger">Delete</button>
+            
+            <button type="submit"
+                    class="btn btn-danger btn-sm"
+                    title="Delete"
+                    onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm không?')">
+                <i class="bi bi-trash3"></i> Delete
+            </button>
             <a href="@Url.Action("Index", "Product")" class="btn btn-dark">Cancel</a>
         </div>
     }
